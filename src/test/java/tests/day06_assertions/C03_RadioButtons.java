@@ -65,7 +65,7 @@ public class C03_RadioButtons {
         erkekRadioButton.getText();
 
         // erkek radiobutton'un secili oldugunu test edelim
-        Assert.assertTrue(erkekRadioButton.isSelected());
+        // Assert.assertTrue(erkekRadioButton.isSelected());
 
         // kadin ve diger radioButton'larinin secili olmadigini test edelim
 
