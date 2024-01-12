@@ -1,4 +1,4 @@
-package day06_assortions;
+package tests.day06_assertions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.AfterClass;
@@ -64,7 +64,7 @@ public class C01_BestBuyAssortions {
     public void logoTesti() {
         // ○ logoTest => BestBuy logosunun görüntülendigini test edin
 
-        WebElement logoElement = driver.findElement(By.xpath("(//img[@class=‘logo’])[1]"));
+        WebElement logoElement = driver.findElement(By.xpath("(//img[@class='logo'])[1]"));
 
         Assert.assertTrue(logoElement.isDisplayed());
 
@@ -74,7 +74,7 @@ public class C01_BestBuyAssortions {
     public void francaisLinkTesti() {
         // ○ FrancaisLinkTest => Fransizca Linkin görüntülendiğini test edin
 
-        WebElement francaisLinkElementi = driver.findElement(By.xpath("//*[text()=‘Français’]"));
+        WebElement francaisLinkElementi = driver.findElement(By.xpath("//*[text()='Français']"));
 
     }
 }
