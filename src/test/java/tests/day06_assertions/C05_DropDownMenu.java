@@ -1,11 +1,15 @@
 package tests.day06_assertions;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import utilities.ReusableMethods;
 import utilities.TestBase;
+
+import java.util.List;
 
 public class C05_DropDownMenu extends TestBase {
 
@@ -37,8 +41,19 @@ public class C05_DropDownMenu extends TestBase {
 
 
        //	5. Ay dropdown menüdeki tum değerleri(value) yazdırın
-       //	6. Ay Dropdown menusunun boyutunun 13 olduğunu test edin
+       List<WebElement>opsiyonElementleriList =selectAy.getOptions();
+       System.out.println(ReusableMethods.stringListeCevir(opsiyonElementleriList));
 
-       Thread.sleep(3000);
+        // listedeki opsiyolarda Mart degeri oldugunu test edin
+
+       Assert.assertTrue(ReusableMethods.stringListeCevir(opsiyonElementleriList).contains("Mart"));
+
+
+       //	6. Ay Dropdown menusunun boyutunun 13 olduğunu test edin
+       Assert.assertEquals(13, opsiyonElementleriList.size());
+
+
+       ReusableMethods.bekle(5);
+
    }
 }
