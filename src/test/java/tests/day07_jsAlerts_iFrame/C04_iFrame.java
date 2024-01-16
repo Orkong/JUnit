@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import utilities.ReusableMethods;
 import utilities.TestBase;
 
+import java.util.List;
+
 public class C04_iFrame extends TestBase {
 
     @Test
@@ -36,17 +38,38 @@ public class C04_iFrame extends TestBase {
 
         Assert.assertEquals(expectedIsim,actualIsim);
 
-        //4- Sagdaki bolumde gorunen urunler arasinda ‘Men Slim Fit’ içeren en az 1 urun olduğunu test edin
-        WebElement menSlimFit= driver.findElement(By.xpath("(//iframe[@frameborder='1'])[2]"));
-        driver.switchTo().frame(menSlimFit);
+        //4- Sagdaki bolumde gorunen urunler arasinda ‘Men Slim Fit’
+        // içeren en az 1 urun olduğunu test edin
+        // urunler baska iframe icinde oldugundan once o iframe gecis yapalim
 
-        WebElement menSlimFitElementi =driver.findElement(By.xpath("//*[text()='Men Slim Fit Casual Shirt']"));
+        // ANCAK ustteki testleri sol bolumde bulunan farkli bir iframe'de yapmistik
+        // sagdaki iframe'i locate etmeye calismadan once
+        // gecis yaptigimiz soldaki iframe'den ana sayfaya donmeliyiz
 
+        driver.switchTo().defaultContent();
+
+        WebElement fashionIframe= driver.findElement(By.xpath("(//iframe[@frameborder='1'])[2]"));
+        driver.switchTo().frame(fashionIframe);
+
+
+        List<WebElement> menSlimFitElementler =driver.findElements(By.xpath("//p[contains(text(),'Men Slim Fit')]"));
+
+        Assert.assertTrue(menSlimFitElementler.size()>0);
         //5- Fashion yazisinin gorunur olduğunu test edin
+        WebElement fashionYaziElementi =driver.findElement(By.tagName("h2"));
 
+        String expectedYazi="Fashion";
+        String actualYazi= fashionYaziElementi.getText();
 
-        //6- Sayfayi kapatin
+        Assert.assertEquals(expectedYazi,actualYazi);
 
+        //6- Here are some products. yazisinin gorunur oldugunu test edin.
+        // yazi anasayfada oldugundan, once iframe'den ana sayfaya donmeliyiz
+
+        driver.switchTo().defaultContent();
+        WebElement hereAreSomeProductsElementi =driver.findElement(By.xpath("//*[text()='Here are some products.']"));
+
+        Assert.assertTrue(hereAreSomeProductsElementi.isDisplayed());
 
         ReusableMethods.bekle(3);
     }
