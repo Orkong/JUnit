@@ -53,6 +53,7 @@ public class C02_CheckBox {
         Assert.assertTrue(carpintiCheckbox.isSelected());
 
 
+
         //	d. Seker ve Epilepsi checkbox’larininin seçili olmadigini test edin
 
         WebElement sekerCheckbox = driver.findElement(By.id("hastalikCheck2"));
