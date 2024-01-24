@@ -35,7 +35,8 @@ public class C03_JSExecutor extends TestBase {
         ReusableMethods.webElementScreenshot(bestSportElementi,"best");
         Assert.assertEquals(expectedBaslik,actualBaslik);
 
-
+        jse.executeScript("alert('Merhaba dünya!');");
+        ReusableMethods.bekle(3);
 
     }
 }
